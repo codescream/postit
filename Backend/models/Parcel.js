@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const parcelSchema = mongoose.Schema(
   {
+    senderID: { type: Number, required: true},
     from: { type: String, required: true },
     to: { type: String, required: true },
     senderName: { type: String, required: true },
@@ -14,6 +15,7 @@ const parcelSchema = mongoose.Schema(
     note: { type: String },
     feedback: { type: String },
     status: { type: Number, default: 0 },
+    createdAt: { type: Date, default: new Date().toISOString()}
   },
   {
     timestamp: true,

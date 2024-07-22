@@ -6,10 +6,11 @@ import { configDotenv } from 'dotenv';
 configDotenv();
 
 export const register = async (req, res) => {
-  const { body } = req.body;
+  const { body } = req;
+
   console.log('registering...');
   const newUser = UserModel({
-    fullname: body.fullname,
+    name: body.name,
     email: body.email,
     age: body.age,
     country: body.country,
@@ -19,7 +20,9 @@ export const register = async (req, res) => {
 
   try {
     const user = await newUser.save();
-    res.status(201).json(user);
+
+    const {password: pwd, ...info} = user.toObject();
+    res.status(201).json(info);
   }catch (error) {
     console.log(error);
     res.status(500).json(error);

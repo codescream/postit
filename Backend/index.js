@@ -2,7 +2,7 @@ import express from 'express';
 import { configDotenv } from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import authRouter from './routes/auth.js';
+import { authRouter, userRouter, parcelRouter } from './routes/index.js';
 
 configDotenv();
 
@@ -17,6 +17,8 @@ app.use(express.json());
 //Routes
 app.get('/', (req, res) => {console.log('root path'); res.send('server is running')});
 app.use('/auth', authRouter);
+app.use('/user', userRouter);
+app.use('/parcel', parcelRouter);
 
 //DB connection
 const db = process.env.DB;
