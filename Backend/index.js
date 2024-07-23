@@ -1,8 +1,8 @@
-import express from 'express';
-import { configDotenv } from 'dotenv';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import { authRouter, userRouter, parcelRouter } from './routes/index.js';
+import express from "express";
+import { configDotenv } from "dotenv";
+import cors from "cors";
+import mongoose from "mongoose";
+import { authRouter, userRouter, parcelRouter } from "./routes/index.js";
 
 configDotenv();
 
@@ -15,16 +15,24 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
-app.get('/', (req, res) => {console.log('root path'); res.send('server is running')});
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-app.use('/parcel', parcelRouter);
+app.get("/", (req, res) => {
+  console.log("root path");
+  res.send("server is running");
+});
+app.use("/auth", authRouter);
+app.use("/user", userRouter);
+app.use("/parcel", parcelRouter);
 
 //DB connection
 const db = process.env.DB;
-mongoose.connect(db)
-.then(() => {console.log('database connection established!')})
-.catch(err => console.log(err));
+mongoose
+  .connect(db)
+  .then(() => {
+    console.log("database connection established!");
+  })
+  .catch((err) => console.log(err));
 
 //SERVER
-app.listen(PORT, () => {console.log(`connected to server ON port ${PORT}`);})
+app.listen(PORT, () => {
+  console.log(`connected to server ON port ${PORT}`);
+});

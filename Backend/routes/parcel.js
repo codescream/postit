@@ -1,24 +1,32 @@
-import express from 'express';
-import { addParcel, deleteParcel, fetchAllParcels, fetchParcel, updateParcel, userParcels } from '../controllers/parcel.js';
+import express from "express";
+import {
+  addParcel,
+  deleteParcel,
+  fetchAllParcels,
+  fetchParcel,
+  updateParcel,
+  userParcels,
+} from "../controllers/parcel.js";
+import { verifyToken, verifyTokenAndRole } from "../middlewares/auth.js";
 
 const router = express.Router();
 
 // add parcel
-router.post('/', addParcel);
+router.post("/", verifyTokenAndRole, addParcel);
 
 // get all parcels
-router.get('/', fetchAllParcels);
+router.get("/", verifyTokenAndRole, fetchAllParcels);
 
 // get a parcel
-router.get('/:id', fetchParcel);
+router.get("/:id", fetchParcel);
 
 // get single user parcels
-router.get('/user/:id', userParcels);
+router.get("/user/:id", verifyToken, userParcels);
 
 // update parcel
-router.patch('/:id', updateParcel);
+router.patch("/:id", verifyTokenAndRole, updateParcel);
 
 // delete parcel
-router.delete('/:id', deleteParcel);
+router.delete("/:id", verifyTokenAndRole, deleteParcel);
 
 export default router;
