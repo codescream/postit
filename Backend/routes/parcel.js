@@ -12,7 +12,7 @@ import { verifyToken, verifyTokenAndRole } from "../middlewares/auth.js";
 const router = express.Router();
 
 // add parcel
-router.post("/", verifyTokenAndRole, addParcel);
+router.post("/", verifyToken, addParcel);
 
 // get all parcels
 router.get("/", verifyTokenAndRole, fetchAllParcels);
@@ -21,10 +21,10 @@ router.get("/", verifyTokenAndRole, fetchAllParcels);
 router.get("/:id", fetchParcel);
 
 // get single user parcels
-router.get("/user/:id", verifyToken, userParcels);
+router.get("/user/:id", userParcels);
 
 // update parcel
-router.patch("/:id", verifyTokenAndRole, updateParcel);
+router.patch("/:id", updateParcel);
 
 // delete parcel
 router.delete("/:id", verifyTokenAndRole, deleteParcel);

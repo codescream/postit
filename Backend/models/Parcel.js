@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 const parcelSchema = mongoose.Schema(
   {
-    senderID: { type: Number, required: true},
+    senderID: { type: String, required: true},
     from: { type: String, required: true },
     to: { type: String, required: true },
     senderName: { type: String, required: true },
     recipientName: { type: String, required: true },
-    senderemail: { type: String, required: true },
+    senderEmail: { type: String, required: true },
     recipientEmail: { type: String, required: true },
-    weigth: { type: Number, required: true },
+    weight: { type: Number, required: true },
     cost: { type: Number, required: true },
     date: { type: String, required: true },
     note: { type: String },

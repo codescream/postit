@@ -6,12 +6,13 @@ configDotenv();
 export const verifyToken = (req, res, next) => {
   const secret = process.env.JWT_SEC;
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization;
     let decoded;
 
-    if (!token) res.status(401).json({ message: "Unauthenticated" });
+    if (!token) 
+      return res.status(401).json({ message: "Unauthenticated" });
 
-    decoded = jwt.verify(token, secret);
+    decoded = jwt.verify(token.split(" ")[1], secret);
 
     req.userId = decoded?.id;
     next();
