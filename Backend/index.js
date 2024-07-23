@@ -23,16 +23,15 @@ app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/parcel", parcelRouter);
 
-//DB connection
-const db = process.env.DB;
-mongoose
-  .connect(db)
-  .then(() => {
-    console.log("database connection established!");
-  })
-  .catch((err) => console.log(err));
-
 //SERVER
 app.listen(PORT, () => {
+  //DB connection
+  const db = process.env.DB;
+  mongoose
+    .connect(db)
+    .then(() => {
+      console.log("database connection established!");
+    })
+    .catch((err) => console.log(err));
   console.log(`connected to server ON port ${PORT}`);
 });
