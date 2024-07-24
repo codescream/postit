@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delivered Parcel</title>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        min-width: 100%;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        background-color: #fafafa;
+        color: #222222;
+      }
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.25;
+        margin: 0;
+        text-align: center;
+      }
+
+      .status {
+        background-color: #1e1e1e;
+        color: #fff;
+        width: 70px;
+        padding: 10px;
+        animation: blink 1s infinite;
+        border-radius: 5px;
+      }
+
+      @keyframes blink {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: 24px;
+      }
+
+      table td {
+        vertical-align: top;
+      }
+
+      .email-wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .email-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1e1e1e;
+        padding: 30px;
+        color: #fff;
+      }
+
+      .email-body {
+        padding: 14px;
+        background-color: #a598e7;
+      }
+
+      .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .img {
+        border-radius: 10px;
+      }
+
+      .email-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: hsl(0, 0%, 0%);
+        color: #ffffff;
+      }
+
+      .email-footer a {
+        color: white;
+      }
+
+      .email-footer > p {
+        margin-bottom: 0;
+      }
+
+      img {
+        background-color: #1e1e1e;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-wrapper">
+      <div class="email-header">
+        <h1>Delivered Parcel</h1>
+      </div>
+      <div class="email-body">
+        <p>Hello <%= sendername %>,</p>
+        <p>Your parcel has been delivered:</p>
+        <p>Here are the details:</p>
+        <p>From: <%= from %></p>
+        <p>To: <%= to %></p>
+        <p>Sender: <%= sendername %></p>
+        <p>Recipient: <%= recipientname %></p>
+        <p>Cost: $<%= cost %></p>
+        <p>Weight: <%= weight %></p>
+        <p>Note: <%= note %></p>
+        <p class="status">Delivered</p>
+
+        <h3>Note:</h3>
+        <p>
+          Please if you did not send or are not expecting a parcel, kindly ignore this
+          email.
+        </p>
+      </div>
+      <div class="email-footer">
+        <div class="img-container">
+          <img
+            src="https://res.cloudinary.com/dap91fhxh/image/upload/v1717495157/hero_r5lgvq.png"
+            alt="sendit-img"
+            height="150px"
+            width="300px"
+            class="img"
+          />
+        </div>
+        <p>
+          If you have any questions, please don't hesitate to contact us at
+          <a href="mailto:alokmondala199@gmail.com">sendit@outlook.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
