@@ -1,11 +1,12 @@
 import express from "express";
-import cron from "node-cron";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
 import newUserScheduler from "./schedulers/newUsers.js";
+import pendingParcelsScheduler from "./schedulers/pendingParcels.js";
 
 configDotenv();
 newUserScheduler();
+pendingParcelsScheduler();
 
 const app = express();
 

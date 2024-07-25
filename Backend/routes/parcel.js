@@ -15,7 +15,7 @@ const router = express.Router();
 router.post("/", verifyToken, addParcel);
 
 // get all parcels
-router.get("/", verifyTokenAndRole, fetchAllParcels);
+router.get("/", fetchAllParcels);
 
 // get a parcel
 router.get("/:id", fetchParcel);

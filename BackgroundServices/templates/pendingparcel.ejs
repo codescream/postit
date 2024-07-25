@@ -36,6 +36,7 @@
         padding: 10px;
         animation: blink 1s infinite;
         border-radius: 5px;
+        text-align: center;
       }
 
       @keyframes blink {
@@ -63,9 +64,6 @@
       }
 
       .email-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: #1e1e1e;
         padding: 30px;
         color: #fff;
@@ -77,9 +75,7 @@
       }
 
       .img-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         padding: 20px 0;
       }
 
@@ -88,11 +84,7 @@
       }
 
       .email-footer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: hsl(0, 0%, 0%);
+        background-color: #000000;
         color: #ffffff;
       }
 
@@ -102,6 +94,8 @@
 
       .email-footer > p {
         margin-bottom: 0;
+        padding: 0 10px;
+        text-align: center;
       }
 
       img {
@@ -113,24 +107,23 @@
   <body>
     <div class="email-wrapper">
       <div class="email-header">
-        <h1>Delivered Parcel</h1>
+        <h1>Pending Parcel</h1>
       </div>
       <div class="email-body">
         <p>Hello <%= sendername %>,</p>
-        <p>Your parcel has been delivered:</p>
+        <p>You've a parcel that has been sent:</p>
         <p>Here are the details:</p>
         <p>From: <%= from %></p>
         <p>To: <%= to %></p>
         <p>Sender: <%= sendername %></p>
         <p>Recipient: <%= recipientname %></p>
-        <p>Cost: $<%= cost %></p>
+        <p>Cost: $ <%= cost %></p>
         <p>Weight: <%= weight %></p>
         <p>Note: <%= note %></p>
-        <p class="status">Delivered</p>
-
+        <p class="status">Pending</p>
         <h3>Note:</h3>
         <p>
-          Please if you did not send or are not expecting a parcel, kindly ignore this
+          Please if you did not send or are not expecting a parcel, then ignore this
           email.
         </p>
       </div>
