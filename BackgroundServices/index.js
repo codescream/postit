@@ -2,8 +2,10 @@ import express from "express";
 import cron from "node-cron";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
+import newUserScheduler from "./schedulers/newUsers.js";
 
 configDotenv();
+newUserScheduler();
 
 const app = express();
 

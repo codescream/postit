@@ -9,7 +9,6 @@ const createTransport = (config) => {
   return transporter;
 };
 
-
 const configurations = {
   service: "gmail",
   host: "smtp.gmail.com",
@@ -17,24 +16,22 @@ const configurations = {
   requireTLS: true,
   auth: {
     user: process.env.EMAIL,
-    pass: process.env.PASS
-  }
-}
+    pass: process.env.PASS,
+  },
+};
 
 const sendMail = (messageOptions) => {
   const transporter = createTransport(configurations);
 
   transporter.verify((err, succ) => {
-    if(err)
-      return console.error(err);
+    if (err) throw new Error(err);
 
     transporter.sendMail(messageOptions, (err, info) => {
-      if(err)
-        return console.error(err);
-  
-      return info;
+      if (err) throw new Error(err);
+
+      console.log(info.response);
     });
-  });  
-}
+  });
+};
 
 export default sendMail;

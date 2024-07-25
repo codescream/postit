@@ -36,15 +36,13 @@
       table td {
         vertical-align: top;
       }
+
       .email-wrapper {
         max-width: 700px;
         margin: 0 auto;
       }
 
       .email-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         background-color: #1e1e1e;
         padding: 30px;
         color: #fff;
@@ -56,9 +54,7 @@
       }
 
       .img-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         padding: 20px 0;
       }
 
@@ -67,11 +63,9 @@
       }
 
       .email-footer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: hsl(0, 0%, 0%);
+        /* justify-content: center;
+        align-items: center; */
+        background-color: #000000;
         color: #ffffff;
       }
 
@@ -81,6 +75,8 @@
 
       .email-footer > p {
         margin-bottom: 0;
+        padding: 0 10px;
+        text-align: center;
       }
 
       img {
@@ -104,9 +100,10 @@
           <a href="http://localhost:5173/login">https://www.sendit.com/login</a>
         </p>
         <h3>Note:</h3>
-        <p>Please keep these credentials private. Do not share with anyone.</p>
+        <p>Please Keep this credentials private. Do not share with anyone.</p>
         <p>
-          If you did not register for a SendIT account, please ignore this email.
+          If you did not register for a SendIT account, Please ignore this
+          email.
         </p>
       </div>
       <div class="email-footer">
