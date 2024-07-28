@@ -7,3 +7,11 @@ body {
   padding: 0;
   background-color: #242424;
 }
+
+.navbar {
+  @apply w-1/5 h-full shadow-inner shadow-slate-500 bg-[#aaa9ad] pl-10 py-10;
+}
+
+.navbar li {
+  @apply flex gap-2 justify-start items-center mb-2 cursor-pointer hover:text-white;
+}
