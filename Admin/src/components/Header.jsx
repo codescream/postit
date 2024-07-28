@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="h-8 bg-blue-500">
-      Header
+    <div className="bg-black text-white flex items-center justify-between px-10 h-24">
+      <Link to={'/'}>
+        <img src="/imgs/logo.png" alt="logo" width={90} />
+      </Link>
+      <button className="cursor-pointer">Login</button>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
