@@ -11,25 +11,16 @@ import {
   NewUser,
 } from "./pages";
 import { Footer, Header, Navbar } from "./components";
-import { useState } from "react";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
   const Layout = () => {
     return (
       <div className="text-black h-screen bg-yellow-200 flex justify-between flex-col">
         <Header />
-        {
-          loggedIn ? (
-            <div className="flex w-screen h-full">
-              <Navbar />
-              <Outlet />
-            </div>
-          ) : (
-            <Login />
-          )
-        }
-        
+          <div className="flex w-screen h-full">
+            <Navbar />
+            <Outlet />
+          </div>
         <Footer />
       </div>
     );
@@ -45,31 +36,35 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/parcels",
+          path: "parcels",
           element: <Parcels />,
         },
         {
-          path: "/parcel/:parcelId",
+          path: "parcel/:parcelId",
           element: <ParcelDetail />,
         },
         {
-          path: "/users",
+          path: "users",
           element: <Users />,
         },
         {
-          path: "/user/:userId",
+          path: "user/:userId",
           element: <UserDetails />,
         },
         {
-          path: "/new-parcel",
+          path: "new-parcel",
           element: <NewParcel />,
         },
         {
-          path: "/NewUser",
+          path: "newUser",
           element: <NewUser />,
         },
       ],
       errorElement: <ErrorPage />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
     }
   ]);
   return (

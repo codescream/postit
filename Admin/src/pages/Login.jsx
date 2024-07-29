@@ -1,7 +1,10 @@
 
 const Login = () => {
+  
   return (
-    <div>Login</div>
+    <div className="text-white">
+      Login
+    </div>
   )
 }
 

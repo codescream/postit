@@ -6,7 +6,7 @@ const Header = () => {
       <Link to={'/'}>
         <img src="/imgs/logo.png" alt="logo" width={90} />
       </Link>
-      <button className="cursor-pointer">Login</button>
+      <button className="cursor-pointer">Logout</button>
     </div>
   );
 };
