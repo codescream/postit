@@ -15,7 +15,7 @@ import { Footer, Header, Navbar } from "./components";
 function App() {
   const Layout = () => {
     return (
-      <div className="text-black h-screen bg-yellow-200 flex justify-between flex-col">
+      <div className="text-black bg-white h-screen flex justify-between flex-col">
         <Header />
           <div className="flex w-screen h-full">
             <Navbar />

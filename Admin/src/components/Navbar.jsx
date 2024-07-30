@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="navbar">
-      <ul className="mb-6 w-fit">
+      <ul className="mb-6">
         <Link to={"/"}>
           <li>
             <FaHome />
