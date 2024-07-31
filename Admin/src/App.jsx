@@ -56,7 +56,7 @@ function App() {
           element: <NewParcel />,
         },
         {
-          path: "newUser",
+          path: "new-user",
           element: <NewUser />,
         },
       ],

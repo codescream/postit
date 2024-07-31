@@ -15,3 +15,7 @@ body {
 .navbar li {
   @apply flex gap-2 justify-start items-center mb-2 cursor-pointer hover:text-white;
 }
+
+.outlet {
+  @apply w-4/5 h-full p-10 py-12;
+}

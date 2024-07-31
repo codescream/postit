@@ -12,7 +12,7 @@ const Home = () => {
   }, [loggedIn]);
 
   return (
-    <div className="gap-2 w-4/5 py-6 px-10 h-full flex flex-col">
+    <div className="gap-2 outlet flex flex-col">
       <div className="flex gap-1">
         <div className="flex-1 shadow-lg p-12 items-center justify-center flex flex-col gap-3">
           <p className="text-center">Users</p>

@@ -1,7 +1,10 @@
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const columns = [
+  {field: 'id', headerName: 'ID', width: 100, align: 'center', headerAlign: 'center' },
   { field: "name", headerName: "Name", width: 150, align: 'center', headerAlign: 'center' },
   { field: "email", headerName: "Email", width: 250, align: 'center', headerAlign: 'center' },
   { field: "age", headerName: "Age", width: 100, align: 'center', headerAlign: 'center' },
@@ -16,9 +19,7 @@ const columns = [
     sortable: false,
     renderCell: () => {
       return (
-        <div className="flex h-full justify-center items-center">
-          <button className="bg-red-600 w-20 h-[20px] rounded-md flex justify-center items-center hover:bg-red-500 py-[15px]">Del</button>
-        </div>
+        <Button variant="contained" color="error">Del</Button>
       )
     }
   }
@@ -192,9 +193,15 @@ const Users = () => {
     <div className="w-4/5 h-full p-2 flex flex-col gap-2 overflow-auto">
       <div className="flex justify-between items-center">
         <p>All Users</p>
-        <button className="bg-black text-white p-1 px-2 rounded-md text-xs font-semibold">
-          New User
-        </button>
+        <Link to={'/new-user'}>
+          <Button 
+            variant="outlined" 
+            size="small"
+            sx={{ backgroundColor: 'black', color: 'white', '&:hover': { backgroundColor: 'white', color: 'black', borderColor: 'black' } }}
+          >
+            New User
+          </Button>
+        </Link>
       </div>
       <Box sx={{ height: 500, width: "100%" }}>
         <DataGrid
