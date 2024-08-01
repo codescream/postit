@@ -21,7 +21,7 @@ function App() {
             <Navbar />
             <Outlet />
           </div>
-        <Footer />
+        <Footer img={'brand.png'} />
       </div>
     );
   };
