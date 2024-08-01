@@ -19,3 +19,16 @@ body {
 .outlet {
   @apply w-4/5 h-full p-10 py-12;
 }
+
+@media screen and (min-width: 1000px) {
+  .g-recaptcha {
+    transform:scale(0.77);-webkit-transform:scale(0.96);transform-origin:0 0;-webkit-transform-origin:0 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .g-recaptcha {
+    transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;
+    margin-bottom: -35px;
+  }
+}

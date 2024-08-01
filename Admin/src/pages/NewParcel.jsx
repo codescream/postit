@@ -1,7 +1,7 @@
 import { TextField, Button } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { LuPackageCheck } from "react-icons/lu";
+import { LuPackagePlus } from "react-icons/lu";
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useState } from 'react';
@@ -138,7 +138,7 @@ const NewParcel = () => {
           <Button 
             className='w-fit' 
             variant='outlined'
-            endIcon={<LuPackageCheck />}
+            endIcon={<LuPackagePlus />}
             sx={{ backgroundColor: 'black', color: 'white', "&:hover": {bgcolor: 'white', color: 'black', borderColor: 'black' } }}
           >
             Create

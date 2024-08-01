@@ -1,22 +1,29 @@
 import { TextField, Button } from "@mui/material";
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Footer } from "../components";
 import { useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [recaptchaValue, setRecaptchaValue] = useState(null);
+  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   const [values, setValues] = useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
+    amount: "",
+    password: "",
+    weight: "",
+    weightRange: "",
     showPassword: false,
   });
+
+  const handleRecaptchaChange = (value) => {
+    setRecaptchaValue(value);
+  };
 
   const handleClickShowPassword = () => {
     setValues({
@@ -29,29 +36,36 @@ const Login = () => {
     event.preventDefault();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!recaptchaValue) {
+      alert('Please complete the reCAPTCHA.');
+      return;
+    }
 
-  }
+    // Your form submission logic here
+    console.log('Form submitted');
+  };
 
   return (
     <div className="flex flex-col justify-between h-screen text-white">
       <div className="flex flex-1">
         <div className="w-1/2 flex items-center justify-end">
           <div className="h-fit relative">
-            <h1
-              className="absolute -top-4 text-xl font-bold"
-            >PostIT Admin</h1>
-            <img 
-              src="/imgs/brand.png" alt="brand"
+            <h1 className="absolute -top-4 text-xl font-bold">PostIT Admin</h1>
+            <img
+              src="/imgs/brand.png"
+              alt="brand"
               className="w-[250px] md:w-[400px]"
             />
           </div>
         </div>
         <div className="w-1/2 flex justify-center items-center">
-          <form onSubmit={handleSubmit}
+          <form
+            onSubmit={handleSubmit}
             className="flex flex-col w-3/4 gap-6 md:w-1/2 bg-orange-400 p-4 py-20 rounded-md"
           >
-            <TextField 
+            <TextField
               label="Email"
               name="email"
               value={email}
@@ -59,12 +73,12 @@ const Login = () => {
               size="small"
               onChange={(e) => setEmail(e.target.value)}
             />
-            
-            <TextField 
+
+            <TextField
               label="Password"
               name="password"
               value={password}
-              type={values.showPassword ? 'text' : 'password'}
+              type={values.showPassword ? "text" : "password"}
               size="small"
               onChange={(e) => setPassword(e.target.value)}
               InputProps={{
@@ -79,19 +93,40 @@ const Login = () => {
                       {values.showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                     </IconButton>
                   </InputAdornment>
-                )
+                ),
               }}
             />
+
+            <div className="g-recaptcha" data-theme="light" data-sitekey={siteKey}>
+              <ReCAPTCHA
+                sitekey={siteKey}
+                onChange={handleRecaptchaChange}
+                size="compact"
+                theme="dark"
+              />
+            </div>
+
             <Button
               endIcon={<IoMdLogIn />}
-              sx={{ backgroundColor: 'black', color: 'white', "&:hover": {bgcolor: 'white', color: 'black', borderColor: 'black' } }}
-            >Login</Button>
+              type="submit"
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+                "&:hover": {
+                  bgcolor: "white",
+                  color: "black",
+                  borderColor: "black",
+                },
+              }}
+            >
+              Login
+            </Button>
           </form>
         </div>
       </div>
-      <Footer img={'logo.png'} />
+      <Footer img={"logo.png"} />
     </div>
-  )
-}
+  );
+};
 
 export default Login;
