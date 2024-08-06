@@ -13,7 +13,7 @@ const Card = ({ parcel, id }) => {
   };
 
   return (
-    <Link to={`/myparcels/${id}`} className="flex w-4/5 md:w-3/5 h-fit p-2 py-3 bg-black rounded-sm">
+    <Link to={`/myparcels/${id}`} className="flex w-full lg:w-3/5 h-fit p-2 py-3 bg-black rounded-sm">
       <div className="flex flex-1 flex-col">
         <p>
           <span className="font-semibold">From:</span> {parcel.from}
@@ -65,7 +65,7 @@ const MyParcels = () => {
   return (
     <div className="flex flex-col gap-2 items-center p-4 text-white">
       <Header />
-      <p className="w-4/5 md:w-3/5 font-semibold">My Parcels</p>
+      <p className="w-full lg:w-3/5 font-semibold">My Parcels</p>
       {array?.map((parcel, i) => (
         <Card key={parcel.recipient} parcel={parcel} id={i} />
       ))}

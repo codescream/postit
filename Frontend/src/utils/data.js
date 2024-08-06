@@ -7,7 +7,10 @@ export const parcels = [
     weight: 2.5,
     dateSent: "2024-07-01",
     estimatedDateOfDelivery: "2024-07-05",
-    status: "in-transit"
+    status: "in-transit",
+    cost: 25.50,
+    trackId: "TRK1234567890",
+    note: "Fragile"
   },
   {
     sender: "John Doe",
@@ -17,7 +20,10 @@ export const parcels = [
     weight: 1.2,
     dateSent: "2024-07-02",
     estimatedDateOfDelivery: "2024-07-06",
-    status: "in-transit"
+    status: "in-transit",
+    cost: 15.75,
+    trackId: "TRK1234567891",
+    note: "Handle with care"
   },
   {
     sender: "John Doe",
@@ -27,7 +33,10 @@ export const parcels = [
     weight: 3.0,
     dateSent: "2024-07-03",
     estimatedDateOfDelivery: "2024-07-07",
-    status: "pending"
+    status: "pending",
+    cost: 30.00,
+    trackId: "TRK1234567892",
+    note: "Urgent"
   },
   {
     sender: "John Doe",
@@ -37,7 +46,10 @@ export const parcels = [
     weight: 4.7,
     dateSent: "2024-07-04",
     estimatedDateOfDelivery: "2024-07-08",
-    status: "unknown"
+    status: "unknown",
+    cost: 45.25,
+    trackId: "TRK1234567893",
+    note: "Perishable"
   },
   {
     sender: "John Doe",
@@ -47,7 +59,10 @@ export const parcels = [
     weight: 2.0,
     dateSent: "2024-07-05",
     estimatedDateOfDelivery: "2024-07-09",
-    status: "delivered"
+    status: "delivered",
+    cost: 20.00,
+    trackId: "TRK1234567894",
+    note: "No special instructions"
   },
   {
     sender: "John Doe",
@@ -57,7 +72,10 @@ export const parcels = [
     weight: 3.3,
     dateSent: "2024-07-06",
     estimatedDateOfDelivery: "2024-07-10",
-    status: "in-transit"
+    status: "in-transit",
+    cost: 33.00,
+    trackId: "TRK1234567895",
+    note: "Keep dry"
   },
   {
     sender: "John Doe",
@@ -67,7 +85,10 @@ export const parcels = [
     weight: 5.0,
     dateSent: "2024-07-07",
     estimatedDateOfDelivery: "2024-07-11",
-    status: "pending"
+    status: "pending",
+    cost: 50.00,
+    trackId: "TRK1234567896",
+    note: "Do not bend"
   },
   {
     sender: "John Doe",
@@ -77,7 +98,10 @@ export const parcels = [
     weight: 2.8,
     dateSent: "2024-07-08",
     estimatedDateOfDelivery: "2024-07-12",
-    status: "in-transit"
+    status: "in-transit",
+    cost: 28.00,
+    trackId: "TRK1234567897",
+    note: "Leave at front door"
   },
   {
     sender: "John Doe",
@@ -87,7 +111,10 @@ export const parcels = [
     weight: 3.7,
     dateSent: "2024-07-09",
     estimatedDateOfDelivery: "2024-07-13",
-    status: "delivered"
+    status: "delivered",
+    cost: 37.00,
+    trackId: "TRK1234567898",
+    note: "Signature required"
   },
   {
     sender: "John Doe",
@@ -97,7 +124,10 @@ export const parcels = [
     weight: 2.9,
     dateSent: "2024-07-10",
     estimatedDateOfDelivery: "2024-07-14",
-    status: "unknown"
+    status: "unknown",
+    cost: 29.00,
+    trackId: "TRK1234567899",
+    note: "Do not freeze"
   },
   {
     sender: "John Doe",
@@ -107,7 +137,10 @@ export const parcels = [
     weight: 4.2,
     dateSent: "2024-07-11",
     estimatedDateOfDelivery: "2024-07-15",
-    status: "pending"
+    status: "pending",
+    cost: 42.00,
+    trackId: "TRK1234567810",
+    note: "Fragile"
   },
   {
     sender: "John Doe",
@@ -117,7 +150,10 @@ export const parcels = [
     weight: 1.5,
     dateSent: "2024-07-12",
     estimatedDateOfDelivery: "2024-07-16",
-    status: "in-transit"
+    status: "in-transit",
+    cost: 15.00,
+    trackId: "TRK1234567811",
+    note: "Handle with care"
   },
   {
     sender: "John Doe",
@@ -127,7 +163,10 @@ export const parcels = [
     weight: 3.1,
     dateSent: "2024-07-13",
     estimatedDateOfDelivery: "2024-07-17",
-    status: "pending"
+    status: "pending",
+    cost: 31.00,
+    trackId: "TRK1234567812",
+    note: "Urgent"
   },
   {
     sender: "John Doe",
@@ -137,7 +176,10 @@ export const parcels = [
     weight: 4.0,
     dateSent: "2024-07-14",
     estimatedDateOfDelivery: "2024-07-18",
-    status: "delivered"
+    status: "delivered",
+    cost: 40.00,
+    trackId: "TRK1234567813",
+    note: "Perishable"
   },
   {
     sender: "John Doe",
@@ -147,16 +189,9 @@ export const parcels = [
     weight: 2.6,
     dateSent: "2024-07-15",
     estimatedDateOfDelivery: "2024-07-19",
-    status: "unknown"
-  },
-  {
-    sender: "John Doe",
-    recipient: "Sam Gamji",
-    from: "New York, NY",
-    to: "Orlando, FL",
-    weight: 2.4,
-    dateSent: "2024-08-01",
-    estimatedDateOfDelivery: "2024-08-19",
-    status: "unknown"
+    status: "unknown",
+    cost: 26.00,
+    trackId: "TRK1234567814",
+    note: "No special instructions"
   }
 ];
