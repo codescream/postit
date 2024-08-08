@@ -2,17 +2,18 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
-import { rows } from "../utils/data";
+import { useEffect, useState } from "react";
+import { parcelAPI } from "../api/parcels";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 90, align: 'center', headerAlign: 'center' },
+  { field: "_id", headerName: "ID", width: 90, align: 'center', headerAlign: 'center' },
   { field: "senderName", headerName: "Sender Name", width: 150, align: 'center', headerAlign: 'center' },
   { field: "recipientName", headerName: "Recipient Name", width: 150, align: 'center', headerAlign: 'center' },
   { field: "from", headerName: "From", width: 150, align: 'center', headerAlign: 'center' },
   { field: "to", headerName: "To", width: 150, align: 'center', headerAlign: 'center' },
   { field: "weight", headerName: "Weight (Kg)", width: 100, align: 'center', headerAlign: 'center' },
   { field: "cost", headerName: "Cost ($)", width: 100, align: 'center', headerAlign: 'center' },
-  { field: 'notes', headerName: 'Notes', width: 200, align: 'center', headerAlign: 'center' },
+  { field: 'note', headerName: 'Note', width: 200, align: 'center', headerAlign: 'center' },
   {
     field: "edit",
     headerName: "Edit",
@@ -20,7 +21,7 @@ const columns = [
     sortable: false,
     renderCell: (params) => {
       return (
-        <Link to={`/parcel/${params.row.id}`}>
+        <Link to={`/parcel/${params.row._id}`}>
           <Button variant="contained">Edit</Button>
         </Link>
         // <div className="flex items-center h-full justify-center">
@@ -48,6 +49,17 @@ const columns = [
 
 
 const Parcels = () => {
+  const [parcels, setParcels] = useState([]);
+
+  useEffect(() => {
+    parcelAPI.get('/')
+  .then((res) => {
+    setParcels(res.data);
+  })
+  .catch((error) => console.error(error));
+  }, [])
+    
+
   return (
     <div className="w-4/5 h-full p-2 flex flex-col gap-2 overflow-auto">
       <div className="flex justify-between items-center">
@@ -67,8 +79,9 @@ const Parcels = () => {
       </div>
       <Box sx={{ height: 500, width: "100%" }}>
         <DataGrid
-          rows={rows}
+          rows={parcels}
           columns={columns}
+          getRowId={(row) => row._id}
           initialState={{
             pagination: {
               paginationModel: {

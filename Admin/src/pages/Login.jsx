@@ -39,12 +39,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!recaptchaValue) {
-      alert('Please complete the reCAPTCHA.');
+      alert("Please complete the reCAPTCHA.");
       return;
     }
 
     // Your form submission logic here
-    console.log('Form submitted');
+    console.log("Form submitted");
   };
 
   return (
@@ -97,7 +97,11 @@ const Login = () => {
               }}
             />
 
-            <div className="g-recaptcha" data-theme="light" data-sitekey={siteKey}>
+            <div
+              className="flex lg:justify-end"
+              data-theme="light"
+              data-sitekey={siteKey}
+            >
               <ReCAPTCHA
                 sitekey={siteKey}
                 onChange={handleRecaptchaChange}
