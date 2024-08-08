@@ -96,7 +96,7 @@ const Login = () => {
               }}
             />
 
-            <div className="g-recaptcha" data-theme="light" data-sitekey={siteKey}>
+            <div className="flex lg:justify-end" data-theme="light" data-sitekey={siteKey}>
               <ReCAPTCHA
                 sitekey={siteKey}
                 onChange={handleRecaptchaChange}

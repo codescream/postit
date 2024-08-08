@@ -29,6 +29,11 @@ const ParcelDetails = () => {
   useEffect(() => {
     setParcel(parcels[parcelId]);
   }, [parcelId, parcel]);
+
+
+  const feedbackSubmit = (e) => {
+    e.preventDefault();
+  };
   
   return (
     <div className="w-screen h-screen p-4 flex flex-col items-center text-white">
@@ -64,7 +69,7 @@ const ParcelDetails = () => {
         <div className="w-1/2 h-full p-4 flex flex-col gap-8">
           <p><span className="font-bold">Sender Email: </span></p>
           <p><span className="font-bold">Recipient Email: </span></p>
-          <form onSubmit={()=>{}}
+          <form onSubmit={feedbackSubmit}
             className="flex flex-col gap-4 text-white"
           >
             <TextField 
