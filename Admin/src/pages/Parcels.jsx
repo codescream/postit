@@ -1,9 +1,11 @@
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from '@mui/material';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { parcelAPI } from "../api/parcels";
+import { useEffect } from "react";
+import { allParcels } from "../redux/reducers/parcels";
+// import { parcelAPI } from "../api/parcels";
 
 const columns = [
   { field: "_id", headerName: "ID", width: 90, align: 'center', headerAlign: 'center' },
@@ -49,17 +51,24 @@ const columns = [
 
 
 const Parcels = () => {
-  const [parcels, setParcels] = useState([]);
+  const parcels = useSelector(state => state.parcelsReducer.data);
+  const isLoading = useSelector(state => state.parcelsReducer.isLoading)
+  console.log('all parcels: ', parcels);
+  console.log(isLoading);
+
+  // const [parcels, setParcels] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    parcelAPI.get('/')
-  .then((res) => {
-    setParcels(res.data);
-  })
-  .catch((error) => console.error(error));
-  }, [])
+  //   parcelAPI.get('/')
+  // .then((res) => {
+  //   setParcels(res.data);
+  //   console.log(res);
+  // })
+  // .catch((error) => console.error(error));
+  dispatch(allParcels())
+  }, [dispatch]);
     
-
   return (
     <div className="w-4/5 h-full p-2 flex flex-col gap-2 overflow-auto">
       <div className="flex justify-between items-center">
@@ -82,6 +91,13 @@ const Parcels = () => {
           rows={parcels}
           columns={columns}
           getRowId={(row) => row._id}
+          loading={isLoading}
+          slotProps={{
+            loadingOverlay: {
+              variant: 'skeleton',
+              noRowsVariant: 'skeleton'
+            }
+          }}
           initialState={{
             pagination: {
               paginationModel: {

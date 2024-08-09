@@ -20,7 +20,7 @@ export const fetchAllParcels = async (req, res) => {
 
     if (!parcels) return res.status(404).json("no parcels found");
 
-    res.status(201).json(parcels);
+    res.status(201).json({parcels: parcels});
   } catch (error) {
     res.status(500).json(error);
   }
