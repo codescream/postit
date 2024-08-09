@@ -6,12 +6,14 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { rows } from "../utils/data.js";
+import { useSelector } from "react-redux";
 
 const ParcelDetail = () => {
   const { parcelId } = useParams();
+  const parcels = useSelector(state => state.parcelsReducer.data);
+  console.log('parcels: ', parcels);
 
-  const row = rows.filter((row) => row.id == parcelId);
+  const parcel = parcels.filter((parcel) => parcel._id == parcelId);
   const [formData, setFormData] = useState({
     senderName: "",
     recipientName: "",
@@ -21,13 +23,12 @@ const ParcelDetail = () => {
     cost: "",
     to: "",
     from: "",
-    notes: "",
+    note: "",
   });
 
   useEffect(() => {
-    setFormData(row[0]);
-    console.log(row);
-  }, [parcelId]);
+    setFormData(parcel[0]);
+  }, [parcelId, parcel]);
 
   // const [sender, setSender] = useState("");
   // const [recipient, setRecipient] = useState("");
@@ -167,7 +168,7 @@ const ParcelDetail = () => {
         <div>
           <TextField
             label="Notes"
-            value={formData.notes}
+            value={formData.note}
             onChange={(e) => {
               setFormData({ ...formData, notes: e.target.value });
             }}
