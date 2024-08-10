@@ -7,3 +7,4 @@ const parcelAPI = axios.create({
 });
 
 export const fetchParcels = () => parcelAPI.get('/parcel');
+export const deleteParcel = (id) => parcelAPI.delete(`/parcel/${id}`);

@@ -4,7 +4,19 @@ import * as parcelAPI from '../../api/parcels';
 export const allParcels = createAsyncThunk('allParcels', async () => {
   try {
     const { data }  = await parcelAPI.fetchParcels();
-    console.log(data);
+    
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
+  }
+});
+
+export const deleteParcel = createAsyncThunk('deleteParcel', async (id) => {
+  try {
+    console.log("deleting parcel..");
+    const { data } = await parcelAPI.deleteParcel(id);
+
     return data;
   } catch (error) {
     console.error(error);
@@ -39,6 +51,15 @@ const parcelReducer = createSlice({
     .addCase(allParcels.rejected, (state, action) => {
       state.error = action.error;
     })
+    .addCase(deleteParcel.pending, (state, action) => {
+      state.pending = true;
+    })
+    .addCase(deleteParcel.fulfilled, (state, action) => {
+      state.data = action.payload.data;
+    })
+    .addCase(deleteParcel.rejected, (state, action) => {
+      state.error = action.error;
+    });
   }
 });
 

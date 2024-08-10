@@ -11,7 +11,6 @@ import { useSelector } from "react-redux";
 const ParcelDetail = () => {
   const { parcelId } = useParams();
   const parcels = useSelector(state => state.parcelsReducer.data);
-  console.log('parcels: ', parcels);
 
   const parcel = parcels.filter((parcel) => parcel._id == parcelId);
   const [formData, setFormData] = useState({
@@ -137,7 +136,7 @@ const ParcelDetail = () => {
               size="small"
               fullWidth
               InputProps={{
-                endAdornment: <InputAdornment>Kg</InputAdornment>,
+                endAdornment: <InputAdornment position="end">Kg</InputAdornment>,
               }}
               required
             />
@@ -152,7 +151,7 @@ const ParcelDetail = () => {
               size="small"
               fullWidth
               InputProps={{
-                endAdornment: <InputAdornment>$</InputAdornment>,
+                endAdornment: <InputAdornment position="end">$</InputAdornment>,
               }}
               required
             />
