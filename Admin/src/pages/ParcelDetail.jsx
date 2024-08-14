@@ -4,7 +4,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { LuPackageCheck } from "react-icons/lu";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputAdornment from "@mui/material/InputAdornment";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allUsers } from "../redux/reducers/users";
@@ -35,8 +35,6 @@ const ParcelDetail = () => {
   const [formData, setFormData] = useState(parcels?.filter((parcel) => parcel._id == parcelId)[0] || defaultForm);
   const [formChanged, setFormChanged] = useState(false);
 
-  let initFormState = useRef(formData);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -52,12 +50,13 @@ const ParcelDetail = () => {
 
   useEffect(() => {
     setFormData(parcels?.filter((parcel) => parcel._id == parcelId)[0] || defaultForm);
-
-    initFormState.current = formData;
+    
+    localStorage.setItem('initFormState', JSON.stringify(parcels?.filter((parcel) => parcel._id == parcelId)[0] || defaultForm));
   }, [parcels, parcelId]);
 
   useEffect(() => {
-    const changed = JSON.stringify(initFormState.current) !== JSON.stringify(formData)
+    const changed = localStorage.getItem("initFormState") !== JSON.stringify(formData)
+   
     setFormChanged(changed);
   }, [formData]);
   
