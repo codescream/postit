@@ -33,3 +33,9 @@ export const rows = Array.from({ length: 30 }, (_, id) => {
   cost: getRandomInt(10, 100),
   notes: notesArray[getRandomInt(0, notesArray.length - 1)]
 }});
+
+export const deliveryStatus = {
+  1: "Processing",
+  2: "Sent",
+  3: "Delivered"
+};

@@ -20,10 +20,6 @@ const Parcels = () => {
   const parcelState = useSelector((state) => state.parcelsReducer.data);
   const isLoading = useSelector((state) => state.parcelsReducer.isLoading);
 
-  const error = useSelector((state) => state.parcelsReducer.error);
-
-  console.log("error:", error);
-
   const [open, setOpen] = useState(false);
   const [parcel, setParcel] = useState({});
   const [snackBar, setSnackBar] = useState(false);
@@ -144,7 +140,9 @@ const Parcels = () => {
 
   const deleteParcel = () => {
     console.log("snackbar closed & deleted");
-    dispatch(delParcel(parcel._id));
+    dispatch(delParcel(parcel._id))
+    .then((res) => console.log(res))
+    .catch((err) =>console.error(err));
   };
 
   const undoDelete = () => {

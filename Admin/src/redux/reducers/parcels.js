@@ -24,6 +24,30 @@ export const deleteParcel = createAsyncThunk('deleteParcel', async (id) => {
   }
 });
 
+export const createParcel = createAsyncThunk("createParcel", async (parcel) => {
+  try {
+    const { data } = await parcelAPI.createParcel(parcel);
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
+  }
+});
+
+export const updateParcel = createAsyncThunk("updateParcel", async (parcel) => {
+  try {
+    const { data } = await parcelAPI.updateParcel(parcel.id, parcel.data);
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
+  }
+})
+
 
 const parcelReducer = createSlice({
   name: 'parcels',
@@ -58,6 +82,24 @@ const parcelReducer = createSlice({
       state.data = action.payload.data;
     })
     .addCase(deleteParcel.rejected, (state, action) => {
+      state.error = action.error;
+    })
+    .addCase(createParcel.pending, (state, action) => {
+      state.pending = true;
+    })
+    .addCase(createParcel.fulfilled, (state, action) => {
+      state.data = action.payload.data;
+    })
+    .addCase(createParcel.rejected, (state, action) => {
+      state.error = action.error;
+    })
+    .addCase(updateParcel.pending, (state, action) => {
+      state.pending = true;
+    })
+    .addCase(updateParcel.fulfilled, (state, action) => {
+      state.data = action.payload.data;
+    })
+    .addCase(updateParcel.rejected, (state, action) => {
       state.error = action.error;
     });
   }
