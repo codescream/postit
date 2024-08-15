@@ -72,7 +72,7 @@ export const deleteParcel = async (req, res) => {
 
     if (!deletedParcel) return res.status(404).json("No such parcel found");
 
-    res.status(201).json({ message: "parcel deleted", deleteParcel });
+    res.status(201).json({ message: "parcel deleted", deletedParcel });
   } catch (error) {
     res.status(500).json(error);
   }

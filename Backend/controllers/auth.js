@@ -14,8 +14,8 @@ export const register = async (req, res) => {
   try {
     const user = await newUser.save();
 
-    const { password: pwd, ...info } = user.toObject();
-    res.status(201).json(info);
+    const { password: pwd, ...data } = user.toObject();
+    res.status(201).json({data: data});
   } catch (error) {
     console.log(error);
     res.status(500).json(error);

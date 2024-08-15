@@ -217,6 +217,7 @@ const NewParcel = () => {
                   setFormData({ ...formData, date: newDate })
                 }
                 slotProps={{ textField: { size: "small" } }}
+                required
               />
             </LocalizationProvider>
           </div>

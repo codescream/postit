@@ -12,6 +12,29 @@ export const allUsers = createAsyncThunk("allUsers", async () => {
   }
 });
 
+export const addUser = createAsyncThunk("addUser", async (userData) => {
+  try {
+    const { data } = await userAPI.addUser(userData);
+
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
+  }
+});
+
+export const deleteUser = createAsyncThunk("deleteUser", async (id) => {
+  try {
+    const { data } = await userAPI.deleteUser(id);
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw new Error(error);
+  }
+});
+
 
 const userReducer = createSlice({
   name: "user",
@@ -30,9 +53,23 @@ const userReducer = createSlice({
     })
     .addCase(allUsers.fulfilled, (state, action) => {
       state.data = action.payload;
+      state.isLoading = false;
     })
     .addCase(allUsers.rejected, (state, action) => {
       state.error = action.error;
+      state.isLoading = false;
+      throw new Error(state.error);
+    })
+    .addCase(deleteUser.pending, (state, action) => {
+      state.isLoading = true;
+    })
+    .addCase(deleteUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+    })
+    .addCase(deleteUser.rejected, (state, action) => {
+      state.error = action.error;
+      state.isLoading = false;
+      throw new Error(state.error);
     })
   }
 });

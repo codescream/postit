@@ -14,11 +14,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { allParcels, deleteParcel as delParcel } from "../redux/reducers/parcels";
+import {
+  allParcels,
+  deleteParcel as delParcel,
+} from "../redux/reducers/parcels";
 
 const Parcels = () => {
   const parcelState = useSelector((state) => state.parcelsReducer.data);
   const isLoading = useSelector((state) => state.parcelsReducer.isLoading);
+  const error = useSelector((state) => state.parcelsReducer.error);
 
   const [open, setOpen] = useState(false);
   const [parcel, setParcel] = useState({});
@@ -139,10 +143,17 @@ const Parcels = () => {
   };
 
   const deleteParcel = () => {
-    console.log("snackbar closed & deleted");
     dispatch(delParcel(parcel._id))
-    .then((res) => console.log(res))
-    .catch((err) =>console.error(err));
+      .then((res) => {
+        console.log(res);
+        console.log("snackbar closed & deleted");
+        console.log(error);
+      })
+      .catch((err) => {
+        console.error(err);
+        setParcels(parcelState);
+        console.log(error);
+      });
   };
 
   const undoDelete = () => {

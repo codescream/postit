@@ -73,34 +73,41 @@ const parcelReducer = createSlice({
       state.isLoading = false;
     })
     .addCase(allParcels.rejected, (state, action) => {
-      state.error = action.error;
+      state.error = action.payload.error;
+      state.isLoading = false;
     })
     .addCase(deleteParcel.pending, (state, action) => {
       state.pending = true;
     })
     .addCase(deleteParcel.fulfilled, (state, action) => {
-      state.data = action.payload.data;
+      state.isLoading = false;
     })
     .addCase(deleteParcel.rejected, (state, action) => {
       state.error = action.error;
+      state.isLoading = false;
+      throw new Error(state.error);
     })
     .addCase(createParcel.pending, (state, action) => {
       state.pending = true;
     })
     .addCase(createParcel.fulfilled, (state, action) => {
       state.data = action.payload.data;
+      state.isLoading = false;
     })
     .addCase(createParcel.rejected, (state, action) => {
-      state.error = action.error;
+      state.error = action.payload.error;
+      state.isLoading = false;
     })
     .addCase(updateParcel.pending, (state, action) => {
       state.pending = true;
     })
     .addCase(updateParcel.fulfilled, (state, action) => {
       state.data = action.payload.data;
+      state.isLoading = false;
     })
     .addCase(updateParcel.rejected, (state, action) => {
-      state.error = action.error;
+      state.error = action.payload.error;
+      state.isLoading = false;
     });
   }
 });

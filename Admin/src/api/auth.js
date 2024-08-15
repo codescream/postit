@@ -6,5 +6,4 @@ const userAPI = axios.create({
   baseURL: BASE_URL
 });
 
-export const allUsers = () => userAPI.get('/user');
-export const deleteUser = (id) => userAPI.delete(`/user/${id}`);
+export const addUser = (userData) => userAPI.post('/auth/register', userData);

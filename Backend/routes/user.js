@@ -4,8 +4,13 @@ import { verifyTokenAndRole } from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/:id", fetchUser);
+// get single user
+router.get("/:id", verifyTokenAndRole, fetchUser);
+
+// get all users
 router.get("/", fetchAllUsers);
-router.delete("/:id", deleteUser);
+
+// delete user
+router.delete("/:id", verifyTokenAndRole, deleteUser);
 
 export default router;
