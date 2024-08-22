@@ -23,8 +23,6 @@ const NewUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(formData);
     
     dispatch(registerUser({...formData}))
     .then((res) => {
@@ -165,7 +163,7 @@ const NewUser = () => {
           //   </Button>
           // }
         >
-          User Create Successfully
+          User Created Successfully
         </Alert>
       </Snackbar>
     </div>

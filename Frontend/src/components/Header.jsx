@@ -1,8 +1,15 @@
-import { Avatar, Divider, ListItemIcon, Menu, MenuItem, Tooltip } from "@mui/material";
+import {
+  Avatar,
+  Divider,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Tooltip,
+} from "@mui/material";
 import { useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdLogOut, IoMdPersonAdd, IoMdSettings } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // const MenuI = () => {
 //   const [anchorEl, setAnchorEl] = useState(null);
@@ -82,29 +89,40 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("userData")) || {});
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const logout = () => {
+    localStorage.removeItem("userData");
+    navigate('/');
+  }
+
   return (
-    <div className='flex justify-between items-center px-5 py-5 w-full bg-black'>
-      <Link to={'/'}>
+    <div className="flex justify-between items-center text-white px-5 py-5 w-full bg-black">
+      <Link to={"/"}>
         <img src="/imgs/logo.png" alt="logo" width={90} />
       </Link>
       {/* <Link to={'/user'}> */}
       <Tooltip title="Account settings">
-        <p className="flex items-center gap-1 cursor-pointer"
+        <p
+          className="flex items-center gap-1 cursor-pointer"
           onClick={handleClick}
         >
-          <FaRegUser /> Mark Ogilo</p>
-          <Menu />
+          <FaRegUser /> {user?.name}
+        </p>
+        {/* <Menu /> */}
       </Tooltip>
-        {/* <Button
+      {/* <Button
           variant='outlined'
           size='small'
           className='h-fit w-fit'
@@ -121,65 +139,81 @@ const Header = () => {
         PaperProps={{
           elevation: 0,
           sx: {
-            backgroundColor: 'black',
-            color: 'white',
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            backgroundColor: "black",
+            color: "white",
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
-            '& .MuiAvatar-root': {
+            "& .MuiAvatar-root": {
               width: 32,
               height: 32,
               ml: -0.5,
               mr: 1,
             },
-            '&::before': {
+            "&::before": {
               content: '""',
-              display: 'block',
-              position: 'absolute',
+              display: "block",
+              position: "absolute",
               top: 0,
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: 'black',
-              transform: 'translateY(-50%) rotate(45deg)',
+              bgcolor: "black",
+              transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },
           },
         }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose} sx={{
-          "&:hover": { backgroundColor: "#242424" }
-        }}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            "&:hover": { backgroundColor: "#242424" },
+          }}
+        >
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose} sx={{
-          "&:hover": { backgroundColor: "#242424" }
-        }}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            "&:hover": { backgroundColor: "#242424" },
+          }}
+        >
           <Avatar /> My account
         </MenuItem>
         <Divider className="bg-gray-500" />
-        <MenuItem onClick={handleClose} sx={{
-          "&:hover": { backgroundColor: "#242424" }
-        }}>
+        <MenuItem
+          onClick={handleClose}
+          disabled={user?.role !== 'admin'}
+          sx={{
+            "&:hover": { backgroundColor: "#242424" },
+          }}
+        >
           <ListItemIcon>
             <IoMdPersonAdd color="white" />
           </ListItemIcon>
           Add another account
         </MenuItem>
-        <MenuItem onClick={handleClose} sx={{
-          "&:hover": { backgroundColor: "#242424" }
-        }}>
+        <MenuItem
+          onClick={handleClose}
+          sx={{
+            "&:hover": { backgroundColor: "#242424" },
+          }}
+        >
           <ListItemIcon>
             <IoMdSettings color="white" />
           </ListItemIcon>
           Settings
         </MenuItem>
-        <Link to={'/'}>
-          <MenuItem onClick={handleClose} sx={{
-            "&:hover": { backgroundColor: "#242424" }
-          }}>
+        <Link to={"/"}>
+          <MenuItem
+            onClick={() => {handleClose(), logout()}}
+            sx={{
+              "&:hover": { backgroundColor: "#242424" },
+            }}
+          >
             <ListItemIcon>
               <IoMdLogOut color="white" />
             </ListItemIcon>
@@ -188,7 +222,7 @@ const Header = () => {
         </Link>
       </Menu>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

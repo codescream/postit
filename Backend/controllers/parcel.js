@@ -57,7 +57,7 @@ export const getUserParcel = async (req, res) => {
     );
 
     if (!userParcels) return res.status(404).json("No parcel found for user");
-
+    console.log(userParcels);
     res.status(201).json(userParcels);
   } catch (error) {
     res.status(500).json(error);
@@ -85,7 +85,7 @@ export const userParcels = async (req, res) => {
     const userParcels = await ParcelModel.find({ senderID: id });
 
     if (!userParcels) return res.status(404).json("No parcel found");
-
+    console.log(userParcels);
     res.status(200).json(userParcels);
   } catch (error) {
     res.status(500).json(error);

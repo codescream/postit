@@ -5,32 +5,46 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
+
+import { useDispatch } from "react-redux";
 import { Footer } from "../components";
+import { signin } from "../../redux/reducers/auth";
+import { useNavigate } from "react-router-dom";
+import { useAuthenticateMutation } from "../../services/api";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    recaptchaValue: null,
+  });
+  const [showPassword, setShowPassword] = useState(false);
   const [recaptchaValue, setRecaptchaValue] = useState(null);
+  const [authenticate, result] = useAuthenticateMutation();
+
   const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-  const [values, setValues] = useState({
-    amount: "",
-    password: "",
-    weight: "",
-    weightRange: "",
-    showPassword: false,
-  });
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const [values, setValues] = useState({
+  //   amount: "",
+  //   password: "",
+  //   weight: "",
+  //   weightRange: "",
+  //   showPassword: false,
+  // });
 
   const handleRecaptchaChange = (value) => {
     setRecaptchaValue(value);
   };
 
-  const handleClickShowPassword = () => {
-    setValues({
-      ...values,
-      showPassword: !values.showPassword,
-    });
-  };
+  // const handleClickShowPassword = () => {
+  //   setValues({
+  //     ...values,
+  //     showPassword: !values.showPassword,
+  //   });
+  // };
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -39,12 +53,33 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!recaptchaValue) {
-      alert('Please complete the reCAPTCHA.');
+      alert("Please complete the reCAPTCHA.");
       return;
     }
 
-    // Your form submission logic here
-    console.log('Form submitted');
+    // Your form submission logic here;
+    // dispatch(signin({ ...formData, recaptchaValue: recaptchaValue }))
+    //   .then((res) => {
+    //     console.log(res);
+    //     console.log("Form submitted");
+    //     console.log(res);
+    //     localStorage.setItem("userData", JSON.stringify(res.payload));
+    //     navigate("/myparcels");
+    //   })
+    //   .catch((err) => console.log(err));
+    authenticate({ ...formData, recaptchaValue: recaptchaValue })
+      .unwrap()
+      .then((res) => {
+        console.log(res);
+        console.log("Form submitted");
+        console.log(result);
+        localStorage.setItem("userData", JSON.stringify(res));
+        navigate("/myparcels");
+      })
+      .catch((err) => {
+        console.log(result);
+        console.log(err);
+      });
   };
 
   return (
@@ -67,36 +102,44 @@ const Login = () => {
             <TextField
               label="Email"
               name="email"
-              value={email}
+              value={formData.email}
               type="email"
               size="small"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
 
             <TextField
               label="Password"
               name="password"
-              value={password}
-              type={values.showPassword ? "text" : "password"}
+              value={formData.password}
+              type={showPassword ? "text" : "password"}
               size="small"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
+                      onClick={() => setShowPassword((prev) => !prev)}
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {values.showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                      {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
             />
 
-            <div className="flex lg:justify-end" data-theme="light" data-sitekey={siteKey}>
+            <div
+              className="flex lg:justify-end"
+              data-theme="light"
+              data-sitekey={siteKey}
+            >
               <ReCAPTCHA
                 sitekey={siteKey}
                 onChange={handleRecaptchaChange}

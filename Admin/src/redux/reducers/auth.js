@@ -7,8 +7,8 @@ export const registerUser = createAsyncThunk("registerUser", async (userData) =>
     console.log(data);
     return data;
   } catch (error) {
-    console.error(error);
-    throw new Error(error);
+    console.log(error);
+    throw new Error(error.message);
   }
 });
 
@@ -35,7 +35,7 @@ const authReducer = createSlice({
     .addCase(registerUser.rejected, (state, action) => {
       state.error = action.error;
       state.isloading = false;
-      throw new Error(state.error);
+      throw new Error(state.error.message);
     })
   }
 });

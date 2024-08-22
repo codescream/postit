@@ -2,13 +2,34 @@ import { useState, useEffect } from "react";
 import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { PieChart } from "@mui/x-charts/PieChart";
+import { useDispatch, useSelector } from "react-redux";
+import { allUsers } from "../redux/reducers/users";
+import { allParcels } from "../redux/reducers/parcels";
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(true);
+  const usersState = useSelector((state) => state.usersReducer.data);
+  const parcelState = useSelector((state) => state.parcelsReducer.data);
+
+  const deliveredParcels = parcelState.filter(p => p.status === 3);
+  const pendingParcels = parcelState.filter(p => p.status === 0);
+  const shippedParcels = parcelState.filter(p => p.status === 1);
+
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!loggedIn) navigate("/login");
+    
+    dispatch(allUsers())
+    .then(() => {})
+    .catch(() => {});
+
+    dispatch(allParcels())
+    .then(() => {})
+    .catch(() => {});
+
   }, [loggedIn]);
 
   return (
@@ -20,7 +41,7 @@ const Home = () => {
             <FaLongArrowAltUp className="text-green-500" />
             <FaLongArrowAltDown className="text-red-600" />
           </div>
-          <span>200</span>
+          <span>{usersState.length}</span>
         </div>
         <div className="flex-1 shadow-lg p-12 items-center justify-center flex flex-col gap-3">
           <p className="text-center">Delivered Parcels</p>
@@ -28,7 +49,7 @@ const Home = () => {
             <FaLongArrowAltUp className="text-green-500" />
             <FaLongArrowAltDown className="text-red-600" />
           </div>
-          <span>2000</span>
+          <span>{deliveredParcels.length}</span>
         </div>
         <div className="flex-1 shadow-lg p-12 items-center justify-center flex flex-col gap-3">
           <p className="text-center">Pending Parcels</p>
@@ -36,7 +57,7 @@ const Home = () => {
             <FaLongArrowAltUp className="text-green-500" />
             <FaLongArrowAltDown className="text-red-600" />
           </div>
-          <span>100</span>
+          <span>{pendingParcels.length}</span>
         </div>
       </div>
       <div className="flex gap-1">
@@ -45,10 +66,10 @@ const Home = () => {
             series={[
               {
                 data: [
-                  { id: 0, value: 10, label: "series A" },
-                  { id: 1, value: 15, label: "series B" },
-                  { id: 2, value: 15, label: "series C" },
-                  { id: 3, value: 20, label: "series D" },
+                  { id: 0, value: deliveredParcels.length, label: "Delivered Parcels" },
+                  { id: 1, value: shippedParcels.length, label: "Shipped Parcels" },
+                  { id: 2, value: pendingParcels.length, label: "Pending Parcels" },
+                  { id: 3, value: usersState.length, label: "Users" },
                 ],
                 innerRadius: 30,
                 outerRadius: 100,
@@ -56,12 +77,12 @@ const Home = () => {
                 cornerRadius: 5,
                 startAngle: -90,
                 endAngle: 180,
-                cx: 150,
+                cx: 100,
                 cy: 150,
               },
             ]}
-            height={270}
-            width={420}
+            height={300}
+            width={410}
           />
         </div>
         <div className="w-fit shadow-lg p-4 items-center justify-center flex flex-col">

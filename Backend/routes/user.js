@@ -11,6 +11,6 @@ router.get("/:id", verifyTokenAndRole, fetchUser);
 router.get("/", fetchAllUsers);
 
 // delete user
-router.delete("/:id", verifyTokenAndRole, deleteUser);
+router.delete("/:id", deleteUser);
 
 export default router;

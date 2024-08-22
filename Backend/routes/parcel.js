@@ -21,7 +21,7 @@ router.get("/", fetchAllParcels);
 router.get("/:id", fetchParcel);
 
 // get single user parcels
-router.get("/user/:id", userParcels);
+router.get("/user/:id", verifyToken, userParcels);
 
 // update parcel
 router.patch("/:id", updateParcel);
