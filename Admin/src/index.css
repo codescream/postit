@@ -9,15 +9,15 @@ body {
 }
 
 .navbar {
-  @apply w-1/5 h-full shadow-inner shadow-slate-500 bg-[#aaa9ad] pl-10 py-10;
+  @apply w-fit h-full flex flex-col gap-8 items-start shadow-inner shadow-slate-500 bg-[#aaa9ad] px-5 py-10;
 }
 
 .navbar li {
-  @apply flex gap-2 justify-start items-center mb-2 cursor-pointer hover:text-white;
+  @apply flex gap-2 justify-start items-center p-2 cursor-pointer hover:text-white;
 }
 
 .outlet {
-  @apply w-4/5 h-full p-10 py-12;
+  @apply flex-1 h-full p-10 py-12;
 }
 
 @media screen and (min-width: 1000px) {

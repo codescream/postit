@@ -46,6 +46,7 @@ const MyParcels = () => {
   const [end, setEnd] = useState(5);
   const [array, setArray] = useState(null);
   const user = JSON.parse(localStorage.getItem("userData"));
+  
   const {
     data: parcels,
     isLoading,

@@ -16,81 +16,61 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="navbar">
-      <ul className="mb-6">
-        <Link to={"/"}>
-          <li>
-            <FaHome />
-            Home
-          </li>
+      <div className="flex flex-col gap-2">
+        <Link to={"/"} className="flex gap-1 items-center hover:text-white">
+          <FaHome className="text-2xl" />
+          <p className="hidden md:inline">Home</p>
         </Link>
-        <Link to={"/profile"}>
-          <li>
-            <FaUser />
-            Profile
-          </li>
+        <Link to={"/profile"} className="flex gap-1 items-center hover:text-white">
+          <FaUser className="text-2xl" />
+          <p className="hidden md:inline">Profile</p>
         </Link>
-      </ul>
+      </div>
 
-      <ul className="mb-6">
-        <Link to={"/parcels"}>
-          <li>
-            <FaBox />
-            Parcels
-          </li>
+      <div className="flex flex-col gap-2">
+        <Link to={"/parcels"} className="flex gap-1 items-center hover:text-white">
+          <FaBox className="text-2xl" />
+          <p className="hidden md:inline">Parcels</p>
         </Link>
-        <Link to={"/users"}>
-          <li>
-            <FaUsers />
-            Users
-          </li>
+        <Link to={"/users"} className="flex gap-1 items-center hover:text-white">
+          <FaUsers className="text-2xl" />
+          <p className="hidden md:inline">Users</p>
         </Link>
-        <Link to={"/orders"}>
-          <li>
-            <FaClipboardList />
-            Orders
-          </li>
+        <Link to={"/orders"} className="flex gap-1 items-center hover:text-white">
+          <FaClipboardList className="text-2xl" />
+          <p className="hidden md:inline">Orders</p>
         </Link>
-      </ul>
-      <ul className="mb-6">
-        <Link to={"/elements"}>
-          <li>
-            <FaElementor />
-            Elements
-          </li>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Link to={"/elements"} className="flex gap-1 items-center hover:text-white">
+            <FaElementor className="text-2xl"/>
+            <p className="hidden md:inline">Elements</p>
         </Link>
-        <Link to={"settings"}>
-          <li>
-            <IoMdSettings />
-            Settings
-          </li>
+        <Link to={"settings"} className="flex gap-1 items-center hover:text-white">
+            <IoMdSettings className="text-2xl" />
+            <p className="hidden md:inline">Settings</p>
         </Link>
-        <Link to={"/backups"}>
-          <li>
-            <FaHardDrive />
-            Backups
-          </li>
+        <Link to={"/backups"} className="flex gap-1 items-center hover:text-white">
+            <FaHardDrive className="text-2xl" />
+            <p className="hidden md:inline">Backups</p>
         </Link>
-      </ul>
-      <ul className="mb-6">
-        <Link to={"/charts"}>
-          <li>
-            <FaChartBar />
-            Charts
-          </li>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Link to={"/charts"} className="flex gap-1 items-center hover:text-white">
+          <FaChartBar className="text-2xl" />
+          <p className="hidden md:inline">Charts</p>
         </Link>
-        <Link to={"/logs"}>
-          <li>
-            <FaClipboard />
-            All Logs
-          </li>
+        <Link to={"/logs"} className="flex gap-1 items-center hover:text-white">
+          <FaClipboard className="text-2xl" />
+          <p className="hidden md:inline">All Logs</p>
         </Link>
-        <Link to={"/calendar"}>
-          <li>
-            <FaCalendarAlt />
-            Calendar
-          </li>
+        <Link to={"/calendar"} className="flex gap-1 items-center hover:text-white">
+          <FaCalendarAlt className="text-2xl" />
+          <p className="hidden md:inline">Calendar</p>
         </Link>
-      </ul>
+      </div>
     </div>
   );
 };

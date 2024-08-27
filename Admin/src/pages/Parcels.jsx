@@ -33,63 +33,72 @@ const Parcels = () => {
     {
       field: "_id",
       headerName: "ID",
-      width: 90,
+      minWidth: 90,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "senderName",
       headerName: "Sender Name",
-      width: 150,
+      minWidth: 150,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "recipientName",
       headerName: "Recipient Name",
-      width: 150,
+      minWidth: 150,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "from",
       headerName: "From",
-      width: 150,
+      minWidth: 150,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "to",
       headerName: "To",
-      width: 150,
+      minWidth: 150,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "weight",
       headerName: "Weight (Kg)",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "cost",
       headerName: "Cost ($)",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "note",
       headerName: "Note",
-      width: 200,
+      minWidth: 200,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "edit",
       headerName: "Edit",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       sortable: false,
       renderCell: (params) => {
         return (
@@ -107,7 +116,8 @@ const Parcels = () => {
     {
       field: "delete",
       headerName: "Delete",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       sortable: false,
       renderCell: (params) => {
         return (
@@ -173,7 +183,7 @@ const Parcels = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-4/5 h-full p-2 flex flex-col gap-2 overflow-auto">
+    <div className="w-full h-full p-2 flex flex-col gap-2 overflow-auto">
       <div className="flex justify-between items-center">
         <p>All Parcels</p>
         <Link to={"/new-parcel"}>

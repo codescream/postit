@@ -70,14 +70,10 @@ const Login = () => {
     authenticate({ ...formData, recaptchaValue: recaptchaValue })
       .unwrap()
       .then((res) => {
-        console.log(res);
-        console.log("Form submitted");
-        console.log(result);
         localStorage.setItem("userData", JSON.stringify(res));
         navigate("/myparcels");
       })
       .catch((err) => {
-        console.log(result);
         console.log(err);
       });
   };

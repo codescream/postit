@@ -73,49 +73,56 @@ const Users = () => {
     {
       field: "_id",
       headerName: "ID",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "name",
       headerName: "Name",
-      width: 150,
+      minWidth: 150,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "email",
       headerName: "Email",
-      width: 250,
+      minWidth: 250,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "age",
       headerName: "Age",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "country",
       headerName: "Country",
-      width: 150,
+      minWidth: 150,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "address",
       headerName: "Address",
-      width: 250,
+      minWidth: 250,
+      flex: 1,
       align: "center",
       headerAlign: "center",
     },
     {
       field: "delete",
       headerName: "Delete",
-      width: 100,
+      minWidth: 100,
+      flex: 1,
       align: "center",
       headerAlign: "center",
       sortable: false,
@@ -134,7 +141,7 @@ const Users = () => {
   ];
 
   return (
-    <div className="w-4/5 h-full p-2 flex flex-col gap-2 overflow-auto">
+    <div className="w-full h-full p-2 flex flex-col gap-2 overflow-auto">
       <div className="flex justify-between items-center">
         <p>All Users</p>
         <Link to={"/new-user"}>

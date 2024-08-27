@@ -27,16 +27,31 @@ const ProtectedRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to={"/landingPage"} />;
 };
 
+const ConditionalRoute = ({ children }) => {
+  const isAuthenticated = JSON.parse(localStorage.getItem("userData"))
+    ? true
+    : false;
+  return !isAuthenticated ? children : <Navigate to={"/myparcels"} />;
+};
+
 const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: JSON.parse(localStorage.getItem("userData")) ? <Navigate to={"/myparcels"} /> : <Navigate to={'/landingPage'} />,
+      element: JSON.parse(localStorage.getItem("userData")) ? (
+        <Navigate to={"/myparcels"} />
+      ) : (
+        <Navigate to={"/landingPage"} />
+      ),
       errorElement: <ErrorPage />,
     },
     {
       path: "/login",
-      element: <Login />,
+      element: (
+        <ConditionalRoute>
+          <Login />
+        </ConditionalRoute>
+      ),
     },
     {
       path: "/myparcels",
@@ -57,9 +72,13 @@ const App = () => {
       ],
     },
     {
-      path: '/landingPage',
-      element: <LandingPage />
-    }
+      path: "/landingPage",
+      element: (
+        <ConditionalRoute>
+          <LandingPage />
+        </ConditionalRoute>
+      ),
+    },
   ]);
 
   return <RouterProvider router={router} />;

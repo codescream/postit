@@ -7,7 +7,8 @@ export const verifyToken = (req, res, next) => {
   const secret = process.env.JWT_SEC;
   try {
     const token = req.headers.authorization;
-
+    console.log(req.headers);
+    console.log(`token: ${token}`);
     let decoded;
 
     if (!token) 

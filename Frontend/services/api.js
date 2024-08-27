@@ -1,11 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const user = JSON.parse(localStorage.getItem('userData'));
+
+
 export const packageApi = createApi({
   reducerPath: "packageApi",
   baseQuery: fetchBaseQuery({ 
     baseUrl: "http://localhost:8000/",
     prepareHeaders: (headers) => {
+      const user = JSON.parse(localStorage.getItem('userData'));
       if (user) {
         headers.set('authorization', 'Bearer ' + user.accessToken);
       }

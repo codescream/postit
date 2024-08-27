@@ -17,7 +17,7 @@ function App() {
     return (
       <div className="text-black bg-white h-screen flex justify-between flex-col">
         <Header />
-          <div className="flex w-screen h-full">
+          <div className="flex flex-1 w-full h-full">
             <Navbar />
             <Outlet />
           </div>
